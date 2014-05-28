@@ -45,5 +45,8 @@ if ($bookCount > 0) {
    echo "</table>";
    $statement->closeCursor();
 }
+else
+	echo "No results found.";
+	
 include('footer.php');
 ?>
