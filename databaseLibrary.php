@@ -32,4 +32,24 @@ function getListOfAllBooks() {
       echo "<p>SQL error: $errorMessage </p>";
    }   
 }
+
+function searchBooks($attr, $term) {
+   global $db, $bookCount;
+   try {
+      $query = "SELECT * FROM BOOK WHERE " . $attr . " LIKE '%" . $term . "%'"; 
+      $statement = $db->prepare($query);
+      $statement->execute();
+      $bookCount=0;
+      while($res = $statement->fetch(PDO::FETCH_ASSOC)){ 
+         $bookCount++; 
+      } 
+      $statement->closeCursor();
+      $statement->execute();
+      return $statement;
+   }   
+   catch (PDOException $e) {
+      $errorMessage = $e->getMessage();
+      echo "<p>SQL error: $errorMessage </p>";
+   }   
+}
 ?>
