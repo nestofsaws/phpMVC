@@ -6,6 +6,21 @@ include('header.php');
     <br><br>
 </form>
 
+<form method="post">
+<label>Search by: </label>
+		<select name="attribute">
+				<option value='ISBN'>ISBN</option>
+				<option value='Title'>Title</option>
+				<option value='Author'>Author</option>
+				<option value='Publisher'>Publisher</option>
+				<option value='Format'>Format</option>
+				<option value='Subject'>Subject</option>
+		</select>
+        <input type="text" name="searchTerm"/>
+	<input type="submit" name="search_books" value="Search" />
+</form>
+<br />
+
 <?php
 if ($bookCount > 0) {
    echo "<table class='gridtable'>
