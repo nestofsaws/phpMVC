@@ -13,4 +13,26 @@ if ( empty($_POST) || isset($_POST['list_books']) ) {
    else
       echo "No results found.";
 }
+
+else if ( isset($_POST['search_books'])) {
+	$sa = $_POST['attribute'];
+	$st = $_POST['searchTerm'];
+	$statement = searchBooks($sa, $st);
+	include('listBooksView.php');
+
+}
+
+else if ( isset($_POST['add_book'])) {
+	include('addBookView.php');
+
+}
+
+else if ( isset($_POST['save_book'])) {
+	print_r($_POST);
+	addBook();
+	$statement = getListOfAllBooks();
+	include('listBooksView.php');
+
+}
+
 ?>
