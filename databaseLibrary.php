@@ -52,4 +52,24 @@ function searchBooks($attr, $term) {
       echo "<p>SQL error: $errorMessage </p>";
    }   
 }
+
+function addBook() {
+   global $db, $bookCount;
+   try {
+      $query = "INSERT INTO BOOK VALUES (' " . $_POST['addISBN'] . " ',' " . $_POST['addTitle'] . " ',' " . $_POST['addAuthor'] . " ',' " . $_POST['addPublisher'] . " ',' " . $_POST['addFormat'] . " ',' " . $_POST['addSubject'] . " ') "; 
+	  $statement = $db->prepare($query);
+      $statement->execute();
+      $bookCount=0;
+      while($res = $statement->fetch(PDO::FETCH_ASSOC)){ 
+         $bookCount++; 
+      } 
+      $statement->closeCursor();
+      $statement->execute();
+      return $statement;
+   }   
+   catch (PDOException $e) {
+      $errorMessage = $e->getMessage();
+      echo "<p>SQL error: $errorMessage </p>";
+   }   
+}
 ?>
